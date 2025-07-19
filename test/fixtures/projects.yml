@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  catrgory: MyString
+  status: MyString
+  technologies: MyString
+  features: MyString
+  results: MyString
+  endpoints: MyString
+  design_patterns: MyString
+  github_url: MyString
+  demo_url: MyString
+  documentation_url: MyString
+  is_featured: false
+  order_index: MyString
+
+two:
+  title: MyString
+  description: MyText
+  catrgory: MyString
+  status: MyString
+  technologies: MyString
+  features: MyString
+  results: MyString
+  endpoints: MyString
+  design_patterns: MyString
+  github_url: MyString
+  demo_url: MyString
+  documentation_url: MyString
+  is_featured: false
+  order_index: MyString
