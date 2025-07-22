@@ -4,11 +4,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all
+    @projects = @projects.by_category(params[:category]) if params[:category].present?
+    @projects = @projects.ordered
 
     render json: @projects
   end
 
-  # GET /projects/1
+  # GET /projects/:id
   def show
     render json: @project
   end
@@ -18,13 +20,13 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      render json: @project, status: :created, location: @project
+      render json: @project, status: :created
     else
       render json: @project.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /projects/1
+  # PATCH/PUT /projects/:id
   def update
     if @project.update(project_params)
       render json: @project
@@ -33,19 +35,35 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1
+  # DELETE /projects/:id
   def destroy
-    @project.destroy!
+    @project.destroy
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params.expect(:id))
+    rescue ActiveRecord::RecordNotFound
+      render_error('Project not found', :not_found)
     end
 
-    # Only allow a list of trusted parameters through.
     def project_params
-      params.expect(project: [ :title, :description, :catrgory, :status, :technologies, :features, :results, :endpoints, :design_patterns, :github_url, :demo_url, :documentation_url, :is_featured, :order_index ])
+      params.require(:project).permit(
+        :title, 
+        :description, 
+        :category, 
+        :status, 
+        technologies: [], 
+        features: [], 
+        results: [], 
+        endpoints: [], 
+        design_patterns: [],
+        :github_url, 
+        :demo_url, 
+        :documentation_url, 
+        :is_featured, 
+        :order_index
+      )
     end
 end
