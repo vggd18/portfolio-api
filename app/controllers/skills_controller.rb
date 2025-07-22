@@ -4,6 +4,7 @@ class SkillsController < ApplicationController
   # GET /skills
   def index
     @skills = Skill.all
+    @skills = @skills.ordered
 
     render json: @skills
   end
@@ -13,13 +14,13 @@ class SkillsController < ApplicationController
     @skill = Skill.new(skill_params)
 
     if @skill.save
-      render json: @skill, status: :created, location: @skill
+      render json: @skill, status: :created
     else
       render json: @skill.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /skills/1
+  # PATCH/PUT /skills/:id
   def update
     if @skill.update(skill_params)
       render json: @skill
@@ -28,19 +29,28 @@ class SkillsController < ApplicationController
     end
   end
 
-  # DELETE /skills/1
+  # DELETE /skills/:id
   def destroy
-    @skill.destroy!
+    @skill.destroy
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_skill
-      @skill = Skill.find(params.expect(:id))
-    end
+
+  def set_skill
+    @skill = Skill.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_error('Skill not found', :not_found)
+  end
 
     # Only allow a list of trusted parameters through.
     def skill_params
-      params.expect(skill: [ :name, :category, :proficiency, :is_featured, :order_index ])
+      params.require(:skill).permit(
+        :name, 
+        :category, 
+        :proficiency, 
+        :is_featured, 
+        :order_index
+      )
     end
 end
