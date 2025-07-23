@@ -48,22 +48,23 @@ class ProjectsController < ApplicationController
       render_error('Project not found', :not_found)
     end
 
-    def project_params
-      params.require(:project).permit(
-        :title, 
-        :description, 
-        :category, 
-        :status, 
-        technologies: [], 
-        features: [], 
-        results: [], 
-        endpoints: [], 
-        design_patterns: [],
-        :github_url, 
-        :demo_url, 
-        :documentation_url, 
-        :is_featured, 
-        :order_index
-      )
-    end
+  def project_params
+    params.require(:project).permit(
+      :title,
+      :description,
+      :category,
+      :status,
+      :github_url,
+      :demo_url,
+      :documentation_url,
+      :is_featured,
+      :order_index,
+      technologies: [],
+      features: [],
+      results: [],
+      endpoints: [],
+      design_patterns: []
+
+    )
+  end
 end
