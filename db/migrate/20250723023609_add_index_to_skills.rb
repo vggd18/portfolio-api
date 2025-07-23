@@ -1,7 +1,7 @@
 class AddIndexToSkills < ActiveRecord::Migration[8.0]
   def change
-    add_index :projects, :category
-    add_index :projects, :is_featured
-    add_index :projects, :proficiency 
+    add_index :skills, :category
+    add_index :skills, :is_featured
+    add_index :skills, :proficiency 
   end
 end
