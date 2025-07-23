@@ -7,7 +7,7 @@ class CreateProjects < ActiveRecord::Migration[8.0]
       t.string :title, null: false
       t.text :description, null: false
       t.enum :category, enum_type: "project_category", null: false
-      t.enum :status, enum_type: "project_status", default: "Pendente", null: false
+      t.enum :status, enum_type: "project_status", default: "pending", null: false
       t.string :technologies, array: true, default: []
       t.string :features, array: true, default: []
       t.string :results, array: true, default: []

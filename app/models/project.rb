@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
-    enum: category, {data: data, backend: backend}
-    enum: status, {pending: "Pendente", in_progress: "Em Andamento", completed: "Finalizado"}
+    enum category: { data: "data", backend: "backend" }
+    enum status: { pending: "pending", in_progress: "in_progress", completed: "completed" }
 
     validates :title, presence: true, length: { maximum: 255 }
     validates :description, presence: true
