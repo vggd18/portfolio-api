@@ -4,8 +4,8 @@ class Project < ApplicationRecord
 
     validates :title, presence: true, length: { maximum: 255 }
     validates :description, presence: true
-    validates :category, presence: true, :inclusion { in: %w[data backend] }
-    validates :status, presence: true :inclusion { in: %w[pending in_progress completed] }
+    validates :category, presence: true
+    validates :status, presence: true
 
     serialize :technologies, Array
     serialize :features, Array
