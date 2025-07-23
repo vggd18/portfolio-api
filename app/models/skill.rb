@@ -6,7 +6,5 @@ class Skill < ApplicationRecord
 
     scope :by_category, ->(category) { where(category: category) }
     scope :featured, -> { where(is_featured: true) }
-    scope :proeficiency, -> { order(:proeficiency, :created_at) }
-    scope :ordered, -> { order(:order_index, :created_at) }
-
+    scope :proficiency , -> { order(:proficiency, :created_at) }
 end

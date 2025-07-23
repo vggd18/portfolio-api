@@ -9,9 +9,5 @@ class CreateSkills < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :projects, :category
-    add_index :projects, :is_featured
-    add_index :projects, :proeficiency
   end
 end

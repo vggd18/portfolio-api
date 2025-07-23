@@ -3,9 +3,7 @@ class SkillsController < ApplicationController
 
   # GET /skills
   def index
-    @skills = Skill.all
-    @skills = @skills.ordered
-
+    @skills = Skill.proficiency
     render json: @skills
   end
 

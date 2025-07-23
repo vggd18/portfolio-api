@@ -8,8 +8,5 @@ class CreateContacts < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :contact_messages, :created_at
-    add_index :contact_messages, :email
   end
 end
