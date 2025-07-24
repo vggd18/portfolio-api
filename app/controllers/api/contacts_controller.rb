@@ -1,4 +1,4 @@
-class ContactsController < ApplicationController
+class Api::ContactsController < ApplicationController
   # GET /contacts
   def index
     @contacts = Contact.recent
